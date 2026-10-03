@@ -6,14 +6,17 @@ from airflow.operators.empty import EmptyOperator
 from datetime import datetime
 import os
 import pandas as pd
-
+from airflow.decorators import task
+from airflow.utils.trigger_rule import TriggerRule
+import json
+from pymongo import MongoClient
 
 # ============================================================
 # CONFIGURATION
 # ============================================================
 
 DATA_FILE = "/opt/airflow/data/dataset.csv"
-
+REPORT_FILE = "/opt/airflow/reports/ecommerce_report.json"
 VALID_FILE = "/opt/airflow/data/processed/dataset_valid.csv"
 ERROR_FILE = "/opt/airflow/data/errors/errors.csv"
 
@@ -569,6 +572,317 @@ def calculate_business_metrics(**context):
         key="monthly_sales",
         value=monthly_sales
     )
+
+@task
+def get_categories():
+
+    df = pd.read_csv(VALID_FILE)
+
+    categories = sorted(
+        df["category"]
+        .dropna()
+        .unique()
+        .tolist()
+    )
+
+    print(f"Nombre de catégories : {len(categories)}")
+
+    for category in categories:
+        print(category)
+
+    return categories
+
+
+@task
+def analyze_category(category):
+    # Erreur volontaire pour tester la gestion des erreurs
+    if category == "audio":
+        raise ValueError(
+            "Erreur simulée volontairement pour la catégorie audio"
+        )
+
+    df = pd.read_csv(VALID_FILE)
+
+    df["amount"] = pd.to_numeric(
+        df["amount"],
+        errors="coerce"
+    )
+
+    df["quantity"] = pd.to_numeric(
+        df["quantity"],
+        errors="coerce"
+    )
+
+    category_df = df[
+        df["category"] == category
+        ].copy()
+
+    nb_commandes = int(
+        category_df["order_id"].nunique()
+    )
+
+    quantity_sold = int(
+        category_df["quantity"].sum()
+    )
+
+    revenue = float(
+        category_df["amount"].sum()
+    )
+
+    result = {
+        "category": category,
+        "orders": nb_commandes,
+        "quantity_sold": quantity_sold,
+        "revenue": revenue
+    }
+
+    print("====================================")
+    print(f"CATÉGORIE : {category}")
+    print("====================================")
+    print(f"Commandes : {nb_commandes}")
+    print(f"Quantité vendue : {quantity_sold}")
+    print(f"Chiffre d'affaires : {revenue:.2f}")
+
+    return result
+
+# ============================================================
+# 6. GÉNÉRATION DU RAPPORT FINAL
+# ============================================================
+
+def generate_final_report(**context):
+
+    ti = context["ti"]
+
+    # ========================================================
+    # KPI GLOBAUX
+    # ========================================================
+
+    nb_commandes = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="nb_commandes"
+    )
+
+    nb_clients = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="nb_clients"
+    )
+
+    chiffre_affaires = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="chiffre_affaires"
+    )
+
+    panier_moyen = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="panier_moyen"
+    )
+
+    top_products = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="top_products"
+    )
+
+    category_metrics = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="category_metrics"
+    )
+
+    region_metrics = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="region_metrics"
+    )
+
+    monthly_sales = ti.xcom_pull(
+        task_ids="calculate_business_metrics",
+        key="monthly_sales"
+    )
+
+    # ========================================================
+    # QUALITÉ DES DONNÉES
+    # ========================================================
+
+    valid_rows = ti.xcom_pull(
+        task_ids="check_data_quality",
+        key="valid_rows"
+    )
+
+    invalid_rows = ti.xcom_pull(
+        task_ids="check_data_quality",
+        key="invalid_rows"
+    )
+
+    error_file = ti.xcom_pull(
+        task_ids="check_data_quality",
+        key="error_file"
+    )
+
+    # ========================================================
+    # RÉSULTATS DES TÂCHES DYNAMIQUES
+    # ========================================================
+
+    category_results = ti.xcom_pull(
+        task_ids="analyze_category",
+        key="return_value"
+    )
+
+    if category_results is None:
+        category_results = []
+
+    valid_category_results = [
+        result
+        for result in category_results
+        if isinstance(result, dict)
+    ]
+
+    expected_categories = ti.xcom_pull(
+        task_ids="get_categories",
+        key="return_value"
+    )
+
+    if expected_categories is None:
+        expected_categories = []
+
+    # ========================================================
+    # STATUT DU TRAITEMENT
+    # ========================================================
+
+    if len(valid_category_results) == len(expected_categories):
+        status = "success"
+    elif len(valid_category_results) > 0:
+        status = "partial"
+    else:
+        status = "failed"
+
+    # ========================================================
+    # CONSTRUCTION DU RAPPORT
+    # ========================================================
+
+    report = {
+        "execution_date": context["logical_date"].isoformat(),
+
+        "dag_id": context["dag"].dag_id,
+
+        "dataset": "olist",
+
+        "source_file": "dataset.csv",
+
+        "status": status,
+
+        "global_metrics": {
+            "nb_commandes": nb_commandes,
+            "nb_clients": nb_clients,
+            "chiffre_affaires": chiffre_affaires,
+            "panier_moyen": panier_moyen
+        },
+
+        "top_products": top_products,
+
+        "category_metrics": category_metrics,
+
+        "region_metrics": region_metrics,
+
+        "monthly_sales": monthly_sales,
+
+        "category_analysis": valid_category_results,
+
+        "quality": {
+            "valid_rows": valid_rows,
+            "invalid_rows": invalid_rows,
+            "error_file": error_file
+        }
+    }
+
+    # ========================================================
+    # SAUVEGARDE
+    # ========================================================
+
+    os.makedirs(
+        os.path.dirname(REPORT_FILE),
+        exist_ok=True
+    )
+
+    with open(
+            REPORT_FILE,
+            "w",
+            encoding="utf-8"
+    ) as file:
+
+        json.dump(
+            report,
+            file,
+            indent=4,
+            ensure_ascii=False
+        )
+
+    print("========================================")
+    print("RAPPORT FINAL GÉNÉRÉ")
+    print("========================================")
+    print(f"Statut : {status}")
+    print(f"Fichier : {REPORT_FILE}")
+    print(
+        f"Analyses catégories réussies : "
+        f"{len(valid_category_results)} "
+        f"/ {len(expected_categories)}"
+    )
+
+    # Le rapport servira ensuite à MongoDB
+    ti.xcom_push(
+        key="report",
+        value=report
+    )
+
+    ti.xcom_push(
+        key="status",
+        value=status
+    )
+
+    # ============================================================
+# 7. STOCKAGE DANS MONGODB
+# ============================================================
+
+def save_metrics_to_mongodb(**context):
+
+    ti = context["ti"]
+
+    # Récupérer le rapport final depuis XCom
+    report = ti.xcom_pull(
+        task_ids="generate_final_report",
+        key="report"
+    )
+
+    if not report:
+        raise ValueError(
+            "Aucun rapport disponible pour MongoDB."
+        )
+
+    # Connexion au service MongoDB Docker
+    client = MongoClient(
+        "mongodb://mongodb:27017",
+        serverSelectionTimeoutMS=5000
+    )
+
+    # Vérifier la connexion
+    client.admin.command("ping")
+
+    # Base et collection demandées
+    db = client["ecommerce_analytics"]
+    collection = db["sales_metrics"]
+
+    # Ajouter quelques informations utiles
+    report["mongodb_inserted_at"] = datetime.utcnow().isoformat()
+
+    # Historiser chaque exécution
+    result = collection.insert_one(report)
+
+    print("========================================")
+    print("MÉTRIQUES ENREGISTRÉES DANS MONGODB")
+    print("========================================")
+    print(f"ID MongoDB : {result.inserted_id}")
+    print("Base : ecommerce_analytics")
+    print("Collection : sales_metrics")
+    print(f"Statut : {report['status']}")
+
+    client.close()
 # ============================================================
 # DÉFINITION DU DAG
 # ============================================================
@@ -665,6 +979,28 @@ with DAG(
         task_id="calculate_business_metrics",
         python_callable=calculate_business_metrics,
     )
+
+    categories = get_categories()
+
+    category_analyses = analyze_category.expand(
+        category=categories
+    )
+    analysis_complete = EmptyOperator(
+        task_id="analysis_complete",
+        trigger_rule=TriggerRule.ALL_DONE
+    )
+
+    final_report = PythonOperator(
+        task_id="generate_final_report",
+        python_callable=generate_final_report,
+        trigger_rule=TriggerRule.ALL_DONE,
+    )
+
+    save_mongodb = PythonOperator(
+        task_id="save_metrics_to_mongodb",
+        python_callable=save_metrics_to_mongodb,
+    )
+
     # ========================================================
     # DÉPENDANCES
     # ========================================================
@@ -679,3 +1015,8 @@ with DAG(
         stop_task
     ]
     continue_task >> load_data_task >> metrics_task
+    metrics_task >> categories
+    category_analyses >> analysis_complete
+    category_analyses >> analysis_complete
+    analysis_complete >> final_report
+    final_report >> save_mongodb

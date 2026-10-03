@@ -1,0 +1,1043 @@
+{
+    "execution_date": "2026-10-03T21:59:56.175335+00:00",
+    "dag_id": "ecommerce_sales_pipeline",
+    "dataset": "olist",
+    "source_file": "dataset.csv",
+    "status": "partial",
+    "global_metrics": {
+        "nb_commandes": 98666,
+        "nb_clients": 95420,
+        "chiffre_affaires": 13591643.700000001,
+        "panier_moyen": 137.75407637889447
+    },
+    "top_products": [
+        {
+            "product": "aca2eb7d00ea1a7b8ebd4e68314663af",
+            "sales": 527,
+            "revenue": 37608.9
+        },
+        {
+            "product": "99a4788cb24856965c36a24e339b6058",
+            "sales": 488,
+            "revenue": 43025.560000000005
+        },
+        {
+            "product": "422879e10f46682990de24d770e7f83d",
+            "sales": 484,
+            "revenue": 26577.22
+        },
+        {
+            "product": "389d119b48cf3043d311335e499d9c6b",
+            "sales": 392,
+            "revenue": 21440.59
+        },
+        {
+            "product": "368c6c730842d78016ad823897a372db",
+            "sales": 388,
+            "revenue": 21056.8
+        },
+        {
+            "product": "53759a2ecddad2bb87a079a1f1519f73",
+            "sales": 373,
+            "revenue": 20387.2
+        },
+        {
+            "product": "d1c427060a0f73f6b889a5c7c61f2ac4",
+            "sales": 343,
+            "revenue": 47214.51
+        },
+        {
+            "product": "53b36df67ebb7c41585e8d54d6772e08",
+            "sales": 323,
+            "revenue": 37683.42
+        },
+        {
+            "product": "154e7e31ebfa092203795c972e5804a6",
+            "sales": 281,
+            "revenue": 6325.19
+        },
+        {
+            "product": "3dd2a17168ec895c781a9191c1e95ad7",
+            "sales": 274,
+            "revenue": 41082.6
+        }
+    ],
+    "category_metrics": [
+        {
+            "category": "health_beauty",
+            "revenue": 1258681.34
+        },
+        {
+            "category": "watches_gifts",
+            "revenue": 1205005.68
+        },
+        {
+            "category": "bed_bath_table",
+            "revenue": 1036988.68
+        },
+        {
+            "category": "sports_leisure",
+            "revenue": 988048.97
+        },
+        {
+            "category": "computers_accessories",
+            "revenue": 911954.32
+        },
+        {
+            "category": "furniture_decor",
+            "revenue": 729762.49
+        },
+        {
+            "category": "cool_stuff",
+            "revenue": 635290.85
+        },
+        {
+            "category": "housewares",
+            "revenue": 632248.66
+        },
+        {
+            "category": "auto",
+            "revenue": 592720.11
+        },
+        {
+            "category": "garden_tools",
+            "revenue": 485256.46
+        },
+        {
+            "category": "toys",
+            "revenue": 483946.6
+        },
+        {
+            "category": "baby",
+            "revenue": 411764.89
+        },
+        {
+            "category": "perfumery",
+            "revenue": 399124.87
+        },
+        {
+            "category": "telephony",
+            "revenue": 323667.53
+        },
+        {
+            "category": "office_furniture",
+            "revenue": 273960.7
+        },
+        {
+            "category": "stationery",
+            "revenue": 230943.23
+        },
+        {
+            "category": "computers",
+            "revenue": 222963.13
+        },
+        {
+            "category": "pet_shop",
+            "revenue": 214315.41
+        },
+        {
+            "category": "musical_instruments",
+            "revenue": 191498.88
+        },
+        {
+            "category": "small_appliances",
+            "revenue": 190648.58
+        },
+        {
+            "category": "unknown",
+            "revenue": 179535.28
+        },
+        {
+            "category": "electronics",
+            "revenue": 160246.74
+        },
+        {
+            "category": "consoles_games",
+            "revenue": 157465.22
+        },
+        {
+            "category": "fashion_bags_accessories",
+            "revenue": 152823.54
+        },
+        {
+            "category": "construction_tools_construction",
+            "revenue": 144677.59
+        },
+        {
+            "category": "luggage_accessories",
+            "revenue": 140429.98
+        },
+        {
+            "category": "home_appliances_2",
+            "revenue": 113317.74
+        },
+        {
+            "category": "home_construction",
+            "revenue": 83088.12
+        },
+        {
+            "category": "home_appliances",
+            "revenue": 80171.53
+        },
+        {
+            "category": "agro_industry_and_commerce",
+            "revenue": 72530.47
+        },
+        {
+            "category": "furniture_living_room",
+            "revenue": 68916.56
+        },
+        {
+            "category": "fixed_telephony",
+            "revenue": 59583.0
+        },
+        {
+            "category": "home_confort",
+            "revenue": 58572.04
+        },
+        {
+            "category": "air_conditioning",
+            "revenue": 55024.96
+        },
+        {
+            "category": "audio",
+            "revenue": 50688.5
+        },
+        {
+            "category": "small_appliances_home_oven_and_coffee",
+            "revenue": 47445.71
+        },
+        {
+            "category": "books_general_interest",
+            "revenue": 46856.88
+        },
+        {
+            "category": "kitchen_dining_laundry_garden_furniture",
+            "revenue": 46328.37
+        },
+        {
+            "category": "construction_tools_lights",
+            "revenue": 41080.0
+        },
+        {
+            "category": "construction_tools_safety",
+            "revenue": 40544.52
+        },
+        {
+            "category": "industry_commerce_and_business",
+            "revenue": 39669.61
+        },
+        {
+            "category": "food",
+            "revenue": 29393.41
+        },
+        {
+            "category": "market_place",
+            "revenue": 28378.47
+        },
+        {
+            "category": "costruction_tools_garden",
+            "revenue": 25715.89
+        },
+        {
+            "category": "art",
+            "revenue": 24202.64
+        },
+        {
+            "category": "fashion_shoes",
+            "revenue": 23562.77
+        },
+        {
+            "category": "drinks",
+            "revenue": 22428.7
+        },
+        {
+            "category": "signaling_and_security",
+            "revenue": 21509.23
+        },
+        {
+            "category": "furniture_bedroom",
+            "revenue": 20028.78
+        },
+        {
+            "category": "books_technical",
+            "revenue": 19096.06
+        },
+        {
+            "category": "costruction_tools_tools",
+            "revenue": 15903.95
+        },
+        {
+            "category": "food_drink",
+            "revenue": 15179.48
+        },
+        {
+            "category": "fashion_male_clothing",
+            "revenue": 10797.82
+        },
+        {
+            "category": "fashion_underwear_beach",
+            "revenue": 9541.55
+        },
+        {
+            "category": "christmas_supplies",
+            "revenue": 8800.82
+        },
+        {
+            "category": "tablets_printing_image",
+            "revenue": 7528.41
+        },
+        {
+            "category": "cine_photo",
+            "revenue": 6933.46
+        },
+        {
+            "category": "music",
+            "revenue": 6034.35
+        },
+        {
+            "category": "dvds_blu_ray",
+            "revenue": 5999.39
+        },
+        {
+            "category": "books_imported",
+            "revenue": 4639.85
+        },
+        {
+            "category": "party_supplies",
+            "revenue": 4485.18
+        },
+        {
+            "category": "furniture_mattress_and_upholstery",
+            "revenue": 4368.08
+        },
+        {
+            "category": "portateis_cozinha_e_preparadores_de_alimentos",
+            "revenue": 3968.5299999999997
+        },
+        {
+            "category": "fashio_female_clothing",
+            "revenue": 2803.64
+        },
+        {
+            "category": "fashion_sport",
+            "revenue": 2119.51
+        },
+        {
+            "category": "la_cuisine",
+            "revenue": 2054.99
+        },
+        {
+            "category": "arts_and_craftmanship",
+            "revenue": 1814.01
+        },
+        {
+            "category": "diapers_and_hygiene",
+            "revenue": 1567.59
+        },
+        {
+            "category": "pc_gamer",
+            "revenue": 1545.95
+        },
+        {
+            "category": "flowers",
+            "revenue": 1110.04
+        },
+        {
+            "category": "home_comfort_2",
+            "revenue": 760.27
+        },
+        {
+            "category": "cds_dvds_musicals",
+            "revenue": 730.0
+        },
+        {
+            "category": "fashion_childrens_clothes",
+            "revenue": 569.85
+        },
+        {
+            "category": "security_and_services",
+            "revenue": 283.28999999999996
+        }
+    ],
+    "region_metrics": [
+        {
+            "region": "SP",
+            "orders": 41375,
+            "revenue": 5202955.05
+        },
+        {
+            "region": "RJ",
+            "orders": 12762,
+            "revenue": 1824092.67
+        },
+        {
+            "region": "MG",
+            "orders": 11544,
+            "revenue": 1585308.03
+        },
+        {
+            "region": "RS",
+            "orders": 5432,
+            "revenue": 750304.02
+        },
+        {
+            "region": "PR",
+            "orders": 4998,
+            "revenue": 683083.76
+        },
+        {
+            "region": "SC",
+            "orders": 3612,
+            "revenue": 520553.34
+        },
+        {
+            "region": "BA",
+            "orders": 3358,
+            "revenue": 511349.99
+        },
+        {
+            "region": "DF",
+            "orders": 2125,
+            "revenue": 302603.94
+        },
+        {
+            "region": "GO",
+            "orders": 2007,
+            "revenue": 294591.95
+        },
+        {
+            "region": "ES",
+            "orders": 2025,
+            "revenue": 275037.31
+        },
+        {
+            "region": "PE",
+            "orders": 1648,
+            "revenue": 262788.03
+        },
+        {
+            "region": "CE",
+            "orders": 1327,
+            "revenue": 227254.71
+        },
+        {
+            "region": "PA",
+            "orders": 970,
+            "revenue": 178947.81
+        },
+        {
+            "region": "MT",
+            "orders": 903,
+            "revenue": 156453.53
+        },
+        {
+            "region": "MA",
+            "orders": 740,
+            "revenue": 119648.22
+        },
+        {
+            "region": "MS",
+            "orders": 709,
+            "revenue": 116812.64
+        },
+        {
+            "region": "PB",
+            "orders": 532,
+            "revenue": 115268.08
+        },
+        {
+            "region": "PI",
+            "orders": 493,
+            "revenue": 86914.08
+        },
+        {
+            "region": "RN",
+            "orders": 482,
+            "revenue": 83034.98
+        },
+        {
+            "region": "AL",
+            "orders": 411,
+            "revenue": 80314.81
+        },
+        {
+            "region": "SE",
+            "orders": 345,
+            "revenue": 58920.85
+        },
+        {
+            "region": "TO",
+            "orders": 279,
+            "revenue": 49621.74
+        },
+        {
+            "region": "RO",
+            "orders": 247,
+            "revenue": 46140.64
+        },
+        {
+            "region": "AM",
+            "orders": 147,
+            "revenue": 22356.84
+        },
+        {
+            "region": "AC",
+            "orders": 81,
+            "revenue": 15982.95
+        },
+        {
+            "region": "AP",
+            "orders": 68,
+            "revenue": 13474.3
+        },
+        {
+            "region": "RR",
+            "orders": 46,
+            "revenue": 7829.43
+        }
+    ],
+    "monthly_sales": [
+        {
+            "month": "2016-09",
+            "revenue": 267.36
+        },
+        {
+            "month": "2016-10",
+            "revenue": 49507.66
+        },
+        {
+            "month": "2016-12",
+            "revenue": 10.9
+        },
+        {
+            "month": "2017-01",
+            "revenue": 120312.87
+        },
+        {
+            "month": "2017-02",
+            "revenue": 247303.02
+        },
+        {
+            "month": "2017-03",
+            "revenue": 374344.3
+        },
+        {
+            "month": "2017-04",
+            "revenue": 359927.23
+        },
+        {
+            "month": "2017-05",
+            "revenue": 506071.14
+        },
+        {
+            "month": "2017-06",
+            "revenue": 433038.6
+        },
+        {
+            "month": "2017-07",
+            "revenue": 498031.48
+        },
+        {
+            "month": "2017-08",
+            "revenue": 573971.68
+        },
+        {
+            "month": "2017-09",
+            "revenue": 624401.6900000001
+        },
+        {
+            "month": "2017-10",
+            "revenue": 664219.43
+        },
+        {
+            "month": "2017-11",
+            "revenue": 1010271.37
+        },
+        {
+            "month": "2017-12",
+            "revenue": 743914.17
+        },
+        {
+            "month": "2018-01",
+            "revenue": 950030.36
+        },
+        {
+            "month": "2018-02",
+            "revenue": 844178.71
+        },
+        {
+            "month": "2018-03",
+            "revenue": 983213.4400000001
+        },
+        {
+            "month": "2018-04",
+            "revenue": 996647.75
+        },
+        {
+            "month": "2018-05",
+            "revenue": 996517.68
+        },
+        {
+            "month": "2018-06",
+            "revenue": 865124.31
+        },
+        {
+            "month": "2018-07",
+            "revenue": 895507.22
+        },
+        {
+            "month": "2018-08",
+            "revenue": 854686.33
+        },
+        {
+            "month": "2018-09",
+            "revenue": 145.0
+        }
+    ],
+    "category_analysis": [
+        {
+            "category": "agro_industry_and_commerce",
+            "orders": 182,
+            "quantity_sold": 212,
+            "revenue": 72530.47
+        },
+        {
+            "category": "air_conditioning",
+            "orders": 253,
+            "quantity_sold": 297,
+            "revenue": 55024.96000000001
+        },
+        {
+            "category": "art",
+            "orders": 202,
+            "quantity_sold": 209,
+            "revenue": 24202.64
+        },
+        {
+            "category": "arts_and_craftmanship",
+            "orders": 23,
+            "quantity_sold": 24,
+            "revenue": 1814.0100000000002
+        },
+        {
+            "category": "auto",
+            "orders": 3897,
+            "quantity_sold": 4235,
+            "revenue": 592720.11
+        },
+        {
+            "category": "baby",
+            "orders": 2885,
+            "quantity_sold": 3065,
+            "revenue": 411764.89
+        },
+        {
+            "category": "bed_bath_table",
+            "orders": 9417,
+            "quantity_sold": 11115,
+            "revenue": 1036988.6800000002
+        },
+        {
+            "category": "books_general_interest",
+            "orders": 512,
+            "quantity_sold": 553,
+            "revenue": 46856.880000000005
+        },
+        {
+            "category": "books_imported",
+            "orders": 53,
+            "quantity_sold": 60,
+            "revenue": 4639.85
+        },
+        {
+            "category": "books_technical",
+            "orders": 260,
+            "quantity_sold": 267,
+            "revenue": 19096.059999999998
+        },
+        {
+            "category": "cds_dvds_musicals",
+            "orders": 12,
+            "quantity_sold": 14,
+            "revenue": 730.0
+        },
+        {
+            "category": "christmas_supplies",
+            "orders": 128,
+            "quantity_sold": 153,
+            "revenue": 8800.82
+        },
+        {
+            "category": "cine_photo",
+            "orders": 65,
+            "quantity_sold": 72,
+            "revenue": 6933.46
+        },
+        {
+            "category": "computers",
+            "orders": 181,
+            "quantity_sold": 203,
+            "revenue": 222963.13
+        },
+        {
+            "category": "computers_accessories",
+            "orders": 6689,
+            "quantity_sold": 7827,
+            "revenue": 911954.3200000001
+        },
+        {
+            "category": "consoles_games",
+            "orders": 1062,
+            "quantity_sold": 1137,
+            "revenue": 157465.22
+        },
+        {
+            "category": "construction_tools_construction",
+            "orders": 748,
+            "quantity_sold": 929,
+            "revenue": 144677.59
+        },
+        {
+            "category": "construction_tools_lights",
+            "orders": 244,
+            "quantity_sold": 304,
+            "revenue": 41080.0
+        },
+        {
+            "category": "construction_tools_safety",
+            "orders": 167,
+            "quantity_sold": 194,
+            "revenue": 40544.52
+        },
+        {
+            "category": "cool_stuff",
+            "orders": 3632,
+            "quantity_sold": 3796,
+            "revenue": 635290.85
+        },
+        {
+            "category": "costruction_tools_garden",
+            "orders": 194,
+            "quantity_sold": 238,
+            "revenue": 25715.89
+        },
+        {
+            "category": "costruction_tools_tools",
+            "orders": 97,
+            "quantity_sold": 103,
+            "revenue": 15903.949999999999
+        },
+        {
+            "category": "diapers_and_hygiene",
+            "orders": 27,
+            "quantity_sold": 39,
+            "revenue": 1567.5900000000001
+        },
+        {
+            "category": "drinks",
+            "orders": 297,
+            "quantity_sold": 379,
+            "revenue": 22428.7
+        },
+        {
+            "category": "dvds_blu_ray",
+            "orders": 59,
+            "quantity_sold": 64,
+            "revenue": 5999.39
+        },
+        {
+            "category": "electronics",
+            "orders": 2550,
+            "quantity_sold": 2767,
+            "revenue": 160246.74
+        },
+        {
+            "category": "fashio_female_clothing",
+            "orders": 39,
+            "quantity_sold": 48,
+            "revenue": 2803.64
+        },
+        {
+            "category": "fashion_bags_accessories",
+            "orders": 1864,
+            "quantity_sold": 2031,
+            "revenue": 152823.54
+        },
+        {
+            "category": "fashion_childrens_clothes",
+            "orders": 8,
+            "quantity_sold": 8,
+            "revenue": 569.85
+        },
+        {
+            "category": "fashion_male_clothing",
+            "orders": 112,
+            "quantity_sold": 132,
+            "revenue": 10797.82
+        },
+        {
+            "category": "fashion_shoes",
+            "orders": 240,
+            "quantity_sold": 262,
+            "revenue": 23562.769999999997
+        },
+        {
+            "category": "fashion_sport",
+            "orders": 27,
+            "quantity_sold": 30,
+            "revenue": 2119.51
+        },
+        {
+            "category": "fashion_underwear_beach",
+            "orders": 121,
+            "quantity_sold": 131,
+            "revenue": 9541.55
+        },
+        {
+            "category": "fixed_telephony",
+            "orders": 217,
+            "quantity_sold": 264,
+            "revenue": 59583.0
+        },
+        {
+            "category": "flowers",
+            "orders": 29,
+            "quantity_sold": 33,
+            "revenue": 1110.04
+        },
+        {
+            "category": "food",
+            "orders": 450,
+            "quantity_sold": 510,
+            "revenue": 29393.409999999996
+        },
+        {
+            "category": "food_drink",
+            "orders": 227,
+            "quantity_sold": 278,
+            "revenue": 15179.48
+        },
+        {
+            "category": "furniture_bedroom",
+            "orders": 95,
+            "quantity_sold": 109,
+            "revenue": 20028.780000000002
+        },
+        {
+            "category": "furniture_decor",
+            "orders": 6449,
+            "quantity_sold": 8334,
+            "revenue": 729762.49
+        },
+        {
+            "category": "furniture_living_room",
+            "orders": 422,
+            "quantity_sold": 503,
+            "revenue": 68916.56
+        },
+        {
+            "category": "furniture_mattress_and_upholstery",
+            "orders": 38,
+            "quantity_sold": 38,
+            "revenue": 4368.08
+        },
+        {
+            "category": "garden_tools",
+            "orders": 3518,
+            "quantity_sold": 4347,
+            "revenue": 485256.46
+        },
+        {
+            "category": "health_beauty",
+            "orders": 8836,
+            "quantity_sold": 9670,
+            "revenue": 1258681.34
+        },
+        {
+            "category": "home_appliances",
+            "orders": 764,
+            "quantity_sold": 771,
+            "revenue": 80171.53
+        },
+        {
+            "category": "home_appliances_2",
+            "orders": 234,
+            "quantity_sold": 238,
+            "revenue": 113317.73999999998
+        },
+        {
+            "category": "home_comfort_2",
+            "orders": 24,
+            "quantity_sold": 30,
+            "revenue": 760.2699999999999
+        },
+        {
+            "category": "home_confort",
+            "orders": 397,
+            "quantity_sold": 434,
+            "revenue": 58572.04
+        },
+        {
+            "category": "home_construction",
+            "orders": 490,
+            "quantity_sold": 604,
+            "revenue": 83088.12
+        },
+        {
+            "category": "housewares",
+            "orders": 5884,
+            "quantity_sold": 6964,
+            "revenue": 632248.66
+        },
+        {
+            "category": "industry_commerce_and_business",
+            "orders": 235,
+            "quantity_sold": 268,
+            "revenue": 39669.61
+        },
+        {
+            "category": "kitchen_dining_laundry_garden_furniture",
+            "orders": 248,
+            "quantity_sold": 281,
+            "revenue": 46328.369999999995
+        },
+        {
+            "category": "la_cuisine",
+            "orders": 13,
+            "quantity_sold": 14,
+            "revenue": 2054.99
+        },
+        {
+            "category": "luggage_accessories",
+            "orders": 1034,
+            "quantity_sold": 1092,
+            "revenue": 140429.97999999998
+        },
+        {
+            "category": "market_place",
+            "orders": 280,
+            "quantity_sold": 311,
+            "revenue": 28378.469999999998
+        },
+        {
+            "category": "music",
+            "orders": 38,
+            "quantity_sold": 38,
+            "revenue": 6034.3499999999985
+        },
+        {
+            "category": "musical_instruments",
+            "orders": 628,
+            "quantity_sold": 680,
+            "revenue": 191498.88
+        },
+        {
+            "category": "office_furniture",
+            "orders": 1273,
+            "quantity_sold": 1691,
+            "revenue": 273960.7
+        },
+        {
+            "category": "party_supplies",
+            "orders": 39,
+            "quantity_sold": 43,
+            "revenue": 4485.179999999999
+        },
+        {
+            "category": "pc_gamer",
+            "orders": 8,
+            "quantity_sold": 9,
+            "revenue": 1545.95
+        },
+        {
+            "category": "perfumery",
+            "orders": 3162,
+            "quantity_sold": 3419,
+            "revenue": 399124.87
+        },
+        {
+            "category": "pet_shop",
+            "orders": 1710,
+            "quantity_sold": 1947,
+            "revenue": 214315.41000000003
+        },
+        {
+            "category": "portateis_cozinha_e_preparadores_de_alimentos",
+            "orders": 14,
+            "quantity_sold": 15,
+            "revenue": 3968.5299999999997
+        },
+        {
+            "category": "security_and_services",
+            "orders": 2,
+            "quantity_sold": 2,
+            "revenue": 283.28999999999996
+        },
+        {
+            "category": "signaling_and_security",
+            "orders": 140,
+            "quantity_sold": 199,
+            "revenue": 21509.23
+        },
+        {
+            "category": "small_appliances",
+            "orders": 630,
+            "quantity_sold": 679,
+            "revenue": 190648.58000000002
+        },
+        {
+            "category": "small_appliances_home_oven_and_coffee",
+            "orders": 75,
+            "quantity_sold": 76,
+            "revenue": 47445.71
+        },
+        {
+            "category": "sports_leisure",
+            "orders": 7720,
+            "quantity_sold": 8641,
+            "revenue": 988048.9700000001
+        },
+        {
+            "category": "stationery",
+            "orders": 2311,
+            "quantity_sold": 2517,
+            "revenue": 230943.22999999998
+        },
+        {
+            "category": "tablets_printing_image",
+            "orders": 79,
+            "quantity_sold": 83,
+            "revenue": 7528.41
+        },
+        {
+            "category": "telephony",
+            "orders": 4199,
+            "quantity_sold": 4545,
+            "revenue": 323667.53
+        },
+        {
+            "category": "toys",
+            "orders": 3886,
+            "quantity_sold": 4117,
+            "revenue": 483946.60000000003
+        },
+        {
+            "category": "unknown",
+            "orders": 1451,
+            "quantity_sold": 1603,
+            "revenue": 179535.28
+        },
+        {
+            "category": "watches_gifts",
+            "orders": 5624,
+            "quantity_sold": 5991,
+            "revenue": 1205005.68
+        }
+    ],
+    "quality": {
+        "valid_rows": 112650,
+        "invalid_rows": 0,
+        "error_file": "/opt/airflow/data/errors/errors.csv"
+    }
+}
